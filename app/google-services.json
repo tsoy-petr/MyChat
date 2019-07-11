@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "389009821406",
+    "firebase_url": "https://chatmessenger-9fdb4.firebaseio.com",
+    "project_id": "chatmessenger-9fdb4",
+    "storage_bucket": "chatmessenger-9fdb4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389009821406:android:740c17ce0754f0ef",
+        "android_client_info": {
+          "package_name": "com.hootor.mychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389009821406-g8tfprmdq04gdilaqgshpar0otj1h5r2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtdWp5e3cB1irpVH3qTzIgCCLC7l9FgIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389009821406-g8tfprmdq04gdilaqgshpar0otj1h5r2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

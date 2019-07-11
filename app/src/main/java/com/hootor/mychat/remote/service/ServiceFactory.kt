@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ServiceFactory {
-    const val BASE_URL = "https://chat.fandroid.info/rest_api/"
+    const val BASE_URL = "https://localhost/rest_api/"
 
     fun makeService(isDebug: Boolean): ApiService {
         val okHttpClient = makeOkHttpClient(
