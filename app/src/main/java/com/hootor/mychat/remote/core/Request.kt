@@ -36,7 +36,10 @@ fun <T : BaseResponse> Response<T>.isSucceed(): Boolean {
 
 fun <T: BaseResponse> Response<T>.parsError(): Failure {
     val message = (body() as BaseResponse).message
-    return when
+    return when (message) {
+        "email already exists" -> Failure.EmailAlreadyExistError
+        else -> Failure.ServerError
+    }
 }
 
 
