@@ -1,9 +1,9 @@
 package com.hootor.mychat.ui.activity
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.hootor.mychat.R
 import com.hootor.mychat.cache.AccountCacheImpl
 import com.hootor.mychat.cache.SharedPrefsManager
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         accountCache.saveToken("12345")
 
         val register = Register(accountRepository)
-        register(Register.Params("abcd@m.com", "abcd", "123")) {
+        register(Register.Params("abcde@m.com", "abcde", "123")) {
             it.either({
                 Toast.makeText(this, it.javaClass.simpleName, Toast.LENGTH_SHORT).show()
             }, {
