@@ -36,7 +36,7 @@ class RegisterFragment : BaseFragment() {
             register()
         }
 
-        btnAlreadyHaveAkk.setOnClickListener {
+        btnAlreadyHaveAccount.setOnClickListener {
             activity?.finish()
         }
     }
