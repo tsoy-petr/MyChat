@@ -1,4 +1,4 @@
-package com.hootor.mychat.ui.fragment
+package com.hootor.mychat.ui.core
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.hootor.mychat.R
-import com.hootor.mychat.domain.type.exception.Failure
-import com.hootor.mychat.ui.activity.BaseActivity
-import com.hootor.mychat.ui.activity.base
+import com.hootor.mychat.domain.type.Failure
+import com.hootor.mychat.ui.core.navigation.Navigator
 import javax.inject.Inject
 
 abstract class BaseFragment : Fragment() {
@@ -21,7 +20,8 @@ abstract class BaseFragment : Fragment() {
     open val titleToolbar = R.string.app_name
     open val showToolbar = true
 
-
+    @Inject
+    lateinit var navigator: Navigator
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

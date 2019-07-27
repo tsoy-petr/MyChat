@@ -11,9 +11,8 @@
             android:id="@+id/toolbar"
             style="@style/BaseToolbarStyle"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"/>
-            <!--app:layout_scrollFlags="scroll|enterAlways"-->
-
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways">
 
         <ProgressBar
                 android:id="@+id/toolbar_progress_bar"
@@ -26,7 +25,7 @@
                 android:visibility="invisible"
                 android:layout_marginEnd="16dp"/>
 
-    </com.google.android.material.appbar.AppBarLayout>
-
+    </androidx.appcompat.widget.Toolbar>
+</com.google.android.material.appbar.AppBarLayout>
 
 

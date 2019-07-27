@@ -3,7 +3,7 @@ package com.hootor.mychat.domain.account
 import com.hootor.mychat.domain.interactor.UseCase
 import com.hootor.mychat.domain.type.Either
 import com.hootor.mychat.domain.type.None
-import com.hootor.mychat.domain.type.exception.Failure
+import com.hootor.mychat.domain.type.Failure
 import javax.inject.Inject
 
 class Register @Inject constructor(private val repository: AccountRepository) : UseCase<None, Register.Params>() {

@@ -12,13 +12,18 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:name=".ui.App">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.register.RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <service android:name=".ui.firebase.FirebaseService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

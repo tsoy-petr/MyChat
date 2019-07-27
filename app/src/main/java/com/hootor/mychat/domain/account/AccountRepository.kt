@@ -2,7 +2,7 @@ package com.hootor.mychat.domain.account
 
 import com.hootor.mychat.domain.type.Either
 import com.hootor.mychat.domain.type.None
-import com.hootor.mychat.domain.type.exception.Failure
+import com.hootor.mychat.domain.type.Failure
 
 interface AccountRepository {
     fun login(email: String, password: String): Either<Failure, AccountEntity>

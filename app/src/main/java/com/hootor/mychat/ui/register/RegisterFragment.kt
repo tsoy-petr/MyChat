@@ -1,13 +1,15 @@
-package com.hootor.mychat.ui.fragment
+package com.hootor.mychat.ui.register
 
 import android.os.Bundle
 import android.view.View
 import com.hootor.mychat.R
+import com.hootor.mychat.domain.account.AccountEntity
 import com.hootor.mychat.domain.type.None
 import com.hootor.mychat.presentation.viewmodel.AccountViewModel
 import com.hootor.mychat.ui.App
-import com.hootor.mychat.ui.ext.onFailure
-import com.hootor.mychat.ui.ext.onSuccess
+import com.hootor.mychat.ui.core.BaseFragment
+import com.hootor.mychat.ui.core.ext.onFailure
+import com.hootor.mychat.ui.core.ext.onSuccess
 import kotlinx.android.synthetic.main.fragment_register.*
 
 class RegisterFragment : BaseFragment() {
@@ -22,6 +24,7 @@ class RegisterFragment : BaseFragment() {
 
         accountViewModel = viewModel {
             onSuccess(registerData, ::handleRegister)
+            onSuccess(accountData, ::handleLogin)
             onFailure(failureData, ::handleFailure)
         }
     }
@@ -31,6 +34,10 @@ class RegisterFragment : BaseFragment() {
 
         btnNewMembership.setOnClickListener {
             register()
+        }
+
+        btnAlreadyHaveAkk.setOnClickListener {
+            activity?.finish()
         }
     }
 
@@ -67,8 +74,15 @@ class RegisterFragment : BaseFragment() {
         }
     }
 
-    private fun handleRegister(none: None? = None()) {
+    private fun handleLogin(accountEntity: AccountEntity?) {
         hideProgress()
-        showMessage("Аккаунт создан")
+        activity?.let {
+            navigator.showHome(it)
+            it.finish()
+        }
+    }
+
+    private fun handleRegister(none: None? = None()) {
+        accountViewModel.login(etEmail.text.toString(), etPassword.text.toString())
     }
 }

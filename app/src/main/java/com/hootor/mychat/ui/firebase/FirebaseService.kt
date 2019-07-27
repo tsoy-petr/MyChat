@@ -1,4 +1,4 @@
-package com.hootor.mychat.ui.service
+package com.hootor.mychat.ui.firebase
 
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService

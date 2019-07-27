@@ -1,7 +1,7 @@
 package com.hootor.mychat.domain.interactor
 
 import com.hootor.mychat.domain.type.Either
-import com.hootor.mychat.domain.type.exception.Failure
+import com.hootor.mychat.domain.type.Failure
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 

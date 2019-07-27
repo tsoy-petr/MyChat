@@ -1,10 +1,10 @@
-package com.hootor.mychat.ui.ext
+package com.hootor.mychat.ui.core.ext
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.hootor.mychat.domain.type.HandleOnce
-import com.hootor.mychat.domain.type.exception.Failure
+import com.hootor.mychat.domain.type.Failure
 
 fun <T : Any, L : LiveData<T>> LifecycleOwner.onSuccess(liveData: L, body: (T?) -> Unit) =
     liveData.observe(this, Observer(body))

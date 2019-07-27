@@ -1,6 +1,6 @@
-package com.hootor.mychat.ui.activity
+package com.hootor.mychat.ui.register
 
-import com.hootor.mychat.ui.fragment.RegisterFragment
+import com.hootor.mychat.ui.core.BaseActivity
 
 class RegisterActivity : BaseActivity() {
 
