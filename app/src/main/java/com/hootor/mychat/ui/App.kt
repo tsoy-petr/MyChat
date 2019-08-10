@@ -9,6 +9,8 @@ import com.hootor.mychat.ui.core.navigation.RouteActivity
 import com.hootor.mychat.ui.register.RegisterActivity
 import com.hootor.mychat.ui.register.RegisterFragment
 import com.hootor.mychat.ui.firebase.FirebaseService
+import com.hootor.mychat.ui.friends.FriendRequestsFragment
+import com.hootor.mychat.ui.friends.FriendsFragment
 import com.hootor.mychat.ui.home.ChatsFragment
 import com.hootor.mychat.ui.home.HomeActivity
 import com.hootor.mychat.ui.login.LoginFragment
@@ -47,6 +49,8 @@ interface AppComponent {
     fun inject(fragment: RegisterFragment)
     fun inject(fragment: LoginFragment)
     fun inject(fragment: ChatsFragment)
+    fun inject(fragment: FriendsFragment)
+    fun inject(fragment: FriendRequestsFragment)
 
     //services
     fun inject(service: FirebaseService)

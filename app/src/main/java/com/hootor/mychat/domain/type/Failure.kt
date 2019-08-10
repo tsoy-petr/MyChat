@@ -9,5 +9,10 @@ sealed class Failure {
 
     object EmailAlreadyExistError : Failure()
 
+    object AlreadyFriendError : Failure()
+    object AlreadyRequestedFriendError : Failure()
+    object ContactNotFoundError : Failure()
+
+
     object NoSavedAccountsError : Failure()
 }

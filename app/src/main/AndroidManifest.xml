@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.hootor.mychat">
+          xmlns:tools="http://schemas.android.com/tools" package="com.hootor.mychat">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -11,10 +12,14 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            android:name=".ui.App">
+            android:name=".ui.App"
+            android:usesCleartextTraffic="true"
+            tools:targetApi="m">
+
 
         <!--Rout-->
-        <activity android:name=".ui.core.navigation.RouteActivity">
+        <activity android:name=".ui.core.navigation.RouteActivity"
+                  android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW"/>

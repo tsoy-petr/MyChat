@@ -4,9 +4,12 @@ import android.content.Context
 import com.hootor.mychat.data.account.AccountCache
 import com.hootor.mychat.data.account.AccountRemote
 import com.hootor.mychat.data.account.AccountRepositoryImpl
+import com.hootor.mychat.data.friends.FriendsRemote
 import com.hootor.mychat.domain.account.AccountRepository
+import com.hootor.mychat.domain.friends.FriendsRepository
 import dagger.Module
 import dagger.Provides
+import info.fandroid.chat.data.friends.FriendsRepositoryImpl
 import javax.inject.Singleton
 
 @Module
@@ -20,5 +23,11 @@ class AppModule(private val context: Context) {
     @Singleton
     fun provideAccountRepository(remote: AccountRemote, cache: AccountCache): AccountRepository {
         return AccountRepositoryImpl(remote, cache)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFriendsRepository(remote: FriendsRemote, accountCache: AccountCache): FriendsRepository {
+        return FriendsRepositoryImpl(accountCache, remote)
     }
 }
