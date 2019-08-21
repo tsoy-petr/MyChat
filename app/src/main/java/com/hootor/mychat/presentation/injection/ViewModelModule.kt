@@ -23,4 +23,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(FriendsViewModel::class)
     abstract fun bindFriendsViewModel(friendsViewModel: FriendsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MediaViewModel::class)
+    abstract fun bindMediaViewModel(mediaViewModel: MediaViewModel): ViewModel
+
 }

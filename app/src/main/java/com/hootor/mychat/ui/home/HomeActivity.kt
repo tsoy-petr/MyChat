@@ -1,6 +1,8 @@
 package com.hootor.mychat.ui.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
@@ -15,8 +17,10 @@ import com.hootor.mychat.presentation.viewmodel.FriendsViewModel
 import com.hootor.mychat.ui.App
 import com.hootor.mychat.ui.core.BaseActivity
 import com.hootor.mychat.ui.core.BaseFragment
+import com.hootor.mychat.ui.core.GlideHelper
 import com.hootor.mychat.ui.core.ext.onFailure
 import com.hootor.mychat.ui.core.ext.onSuccess
+import com.hootor.mychat.ui.firebase.NotificationHelper
 import com.hootor.mychat.ui.friends.FriendRequestsFragment
 import com.hootor.mychat.ui.friends.FriendsFragment
 import kotlinx.android.synthetic.main.activity_navigation.*
@@ -55,10 +59,19 @@ class HomeActivity : BaseActivity() {
             onFailure(failureData, ::handleFailure)
         }
 
-        accountViewModel.getAccount()
-
         supportActionBar?.setHomeAsUpIndicator(R.drawable.menu)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        supportFragmentManager.beginTransaction().replace(R.id.requestContainer, FriendRequestsFragment()).commit()
+
+        val type: String? = intent.getStringExtra("type")
+        when (type) {
+            NotificationHelper.TYPE_ADD_FRIEND -> {
+                openDrawer()
+                friendsViewModel.getFriendRequests()
+                requestContainer.visibility = View.VISIBLE
+            }
+        }
 
         btnLogout.setOnClickListener {
             accountViewModel.logout()
@@ -88,17 +101,21 @@ class HomeActivity : BaseActivity() {
             closeDrawer()
         }
 
-        supportFragmentManager.beginTransaction().replace(R.id.requestContainer, FriendRequestsFragment()).commit()
-
         btnRequests.setOnClickListener {
             friendsViewModel.getFriendRequests()
-
 
             if (requestContainer.visibility == View.VISIBLE) {
                 requestContainer.visibility = View.GONE
             } else {
                 requestContainer.visibility = View.VISIBLE
             }
+        }
+
+        profileContainer.setOnClickListener {
+            navigator.showAccount(this)
+            Handler(Looper.getMainLooper()).postDelayed({
+                closeDrawer()
+            }, 200)
         }
     }
 
@@ -116,18 +133,24 @@ class HomeActivity : BaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onResume() {
+        super.onResume()
+        accountViewModel.getAccount()
+    }
+
     private fun openDrawer() {
         hideSoftKeyboard()
         drawerLayout.openDrawer(navigationView)
     }
 
-    private fun closeDrawer() {
+    private fun closeDrawer(animate: Boolean = true) {
         hideSoftKeyboard()
-        drawerLayout.closeDrawer(navigationView)
+        drawerLayout.closeDrawer(navigationView, animate)
     }
 
     private fun handleAccount(accountEntity: AccountEntity?) {
         accountEntity?.let {
+            GlideHelper.loadImage(this, it.image, ivUserImage)
             tvUserName.text = it.name
             tvUserEmail.text = it.email
             tvUserStatus.text = it.status
@@ -158,29 +181,13 @@ class HomeActivity : BaseActivity() {
         }
     }
 
-
     override fun handleFailure(failure: Failure?) {
         hideProgress()
         when (failure) {
-            Failure.ContactNotFoundError -> showEmailNotFoundDialog()
+            Failure.ContactNotFoundError -> navigator.showEmailNotFoundDialog(this, etEmail.text.toString())
             else -> super.handleFailure(failure)
         }
     }
-
-
-    private fun showEmailNotFoundDialog() {
-        AlertDialog.Builder(this)
-            .setMessage(getString(R.string.message_promt_app))
-
-            .setPositiveButton(android.R.string.yes) { dialog, which ->
-                navigator.showEmailInvite(this, etEmail.text.toString())
-            }
-
-            .setNegativeButton(android.R.string.no, null)
-            .setIcon(android.R.drawable.ic_dialog_alert)
-            .show()
-    }
-
 
 
     override fun onBackPressed() {

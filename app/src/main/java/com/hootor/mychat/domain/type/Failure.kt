@@ -15,4 +15,6 @@ sealed class Failure {
 
 
     object NoSavedAccountsError : Failure()
+
+    object FilePickError : Failure()
 }

@@ -4,6 +4,7 @@ import android.view.View
 import com.hootor.mychat.R
 import com.hootor.mychat.domain.friends.FriendEntity
 import com.hootor.mychat.ui.core.BaseAdapter
+import com.hootor.mychat.ui.core.GlideHelper
 import kotlinx.android.synthetic.main.item_friend_request.view.*
 
 open class FriendRequestsAdapter : BaseAdapter<FriendRequestsAdapter.FriendRequestViewHolder>() {
@@ -28,6 +29,7 @@ open class FriendRequestsAdapter : BaseAdapter<FriendRequestsAdapter.FriendReque
 
 
             (item as? FriendEntity)?.let {
+                GlideHelper.loadImage(view.context, it.image, view.imgPhoto, R.drawable.ic_account_circle)
                 view.tvName.text = it.name
             }
 
