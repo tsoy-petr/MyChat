@@ -43,6 +43,7 @@ ext {
     circleImageViewVersion = "3.0.0"
     permissionUtilsVersion = "1.0.9"
     glideVersion = "4.9.0"
+    roomVersion = "2.0.0"
 }
 
 
@@ -106,4 +107,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    
 }

@@ -21,9 +21,10 @@ sealed class Either<out L, out R> {
         }
 }
 
-fun <A, B, C> ((A) -> B).compose(f: (B) -> C): (A) -> C = {
-    f(this(it))
+fun <T, L, R> Either<L, R>.map(fn: (R) -> (T)): Either<L, T> {
+    return this.flatMap(fn.compose(::right))
 }
+
 
 fun <T, L, R> Either<L, R>.flatMap(fn: (R) -> Either<L, T>): Either<L, T> {
     return when (this) {
@@ -32,11 +33,11 @@ fun <T, L, R> Either<L, R>.flatMap(fn: (R) -> Either<L, T>): Either<L, T> {
     }
 }
 
-fun <T, L, R> Either<L, R>.map(fn: (R) -> (T)): Either<L, T> {
-    return this.flatMap(fn.compose(::right))
+fun <L, R> Either<L, R>.onNext(fn: (R) -> Unit): Either<L, R> {
+    this.flatMap(fn.compose(f = ::right))
+    return this
 }
 
-fun <L, R> Either<L, R>.onNext(fn: (R) -> Unit): Either<L, R> {
-    this.flatMap(fn.compose(::right))
-    return this
+fun <A, B, C> ((A) -> B).compose(f: (B) -> C): (A) -> C = {
+    f(this(it))
 }
